@@ -11,32 +11,51 @@ class AppColors {
   static Color highlightColor = const Color.fromRGBO(217, 172, 13, 1);
 }
 
-//ThemeData = mendefinisikan tema aplikasi secara keseluruhan.
+//ThemeData = mendefinisikan tema aplikasi secara keseluruhan. -------------------------------------------------------
 ThemeData primaryTheme = ThemeData(
-    //seed color
-    colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
+  //seed color
+  colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
 
-    //scaffold color (Background Halaman)
-    scaffoldBackgroundColor: AppColors.secondaryAccent,
+  //scaffold color (Background Halaman) -------------------------------------------------------
+  scaffoldBackgroundColor: AppColors.secondaryAccent,
 
-    //appBarTheme adalah pengaturan bar aplikasi
-    appBarTheme: AppBarTheme(
-        backgroundColor: AppColors.secondaryColor,
-        foregroundColor: AppColors.textColor,
-        surfaceTintColor: Colors.transparent,
-        centerTitle: true),
+  //appBarTheme adalah pengaturan bar aplikasi -------------------------------------------------------
+  appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.secondaryColor,
+      foregroundColor: AppColors.textColor,
+      surfaceTintColor: Colors.transparent,
+      centerTitle: true),
 
-    //textTheme adalah pengaturan teks yang digunakan dalam aplikasi
-    textTheme: TextTheme(
-        bodyMedium: TextStyle(
-            color: AppColors.textColor, fontSize: 16, letterSpacing: 1),
-        headlineMedium: TextStyle(
-            color: AppColors.titleColor,
-            fontSize: 16,
-            letterSpacing: 1,
-            fontWeight: FontWeight.bold),
-        titleMedium: TextStyle(
-            color: AppColors.titleColor,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 2)));
+  //textTheme adalah pengaturan teks yang digunakan dalam aplikasi -------------------------------------------------------
+  textTheme: TextTheme(
+      bodyMedium:
+          TextStyle(color: AppColors.textColor, fontSize: 16, letterSpacing: 1),
+      headlineMedium: TextStyle(
+          color: AppColors.titleColor,
+          fontSize: 16,
+          letterSpacing: 1,
+          fontWeight: FontWeight.bold),
+      titleMedium: TextStyle(
+          color: AppColors.titleColor,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          letterSpacing: 2)),
+
+  // Card Theme -------------------------------------------------------
+  cardTheme: CardTheme(
+    color: AppColors.secondaryColor.withOpacity(0.3),
+    surfaceTintColor: Colors.transparent,
+    shape: const RoundedRectangleBorder(),
+    shadowColor: Colors.transparent,
+    margin: const EdgeInsets.only(bottom: 16),
+  ),
+
+  //Input Decoration -------------------------------------------------------
+
+  inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: AppColors.secondaryColor.withOpacity(0.5),
+      border: InputBorder.none,
+      labelStyle: TextStyle(color: AppColors.textColor),
+      prefixIconColor: AppColors.textColor),
+);

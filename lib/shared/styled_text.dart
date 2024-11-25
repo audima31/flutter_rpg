@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import 'package:google_fonts/google_fonts.dart';
 
 //Reusable Styled Text Widget
 class StyledText extends StatelessWidget {
@@ -12,6 +13,8 @@ class StyledText extends StatelessWidget {
       text,
       style: Theme.of(context).textTheme.bodyMedium,
     );
+    // style: GoogleFonts.kanit(
+    //     textStyle: Theme.of(context).textTheme.bodyMedium));
   }
 }
 
@@ -23,8 +26,9 @@ class StyledHeading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      text.toUpperCase(),
-      style: Theme.of(context).textTheme.headlineMedium,
+      text.toUpperCase(), style: Theme.of(context).textTheme.headlineMedium,
+      // style: GoogleFonts.kanit(
+      //     textStyle: Theme.of(context).textTheme.headlineMedium),
     );
   }
 }
@@ -36,8 +40,9 @@ class StyledTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      text,
-      style: Theme.of(context).textTheme.titleMedium,
+      text.toUpperCase(), style: Theme.of(context).textTheme.titleMedium,
+      // style:
+      //     GoogleFonts.kanit(textStyle: Theme.of(context).textTheme.titleMedium),
     );
   }
 }

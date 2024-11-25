@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rpg/screens/home/character_card.dart';
+import 'package:flutter_rpg/shared/styled_button.dart';
+import 'package:flutter_rpg/models/characters.dart';
 import 'package:flutter_rpg/shared/styled_text.dart';
 
 class Home extends StatefulWidget {
@@ -16,15 +19,20 @@ class _HomeState extends State<Home> {
         body: Container(
           padding: const EdgeInsets.all(16),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Characters List :'),
-              const StyledHeading('Characeter list'),
-              const StyledTitle('Character Name'),
-              FilledButton(
+              //KEK .map nya React
+              Expanded(
+                child: ListView.builder(
+                  //characters dari data dummy yang ada di characters.dart
+                  itemCount: characters.length,
+                  itemBuilder: (_, index) {
+                    return CharacterCard(characters[index]);
+                  },
+                ),
+              ),
+              StyledButton(
                 onPressed: () {},
-                child: const Text("Select Character"),
+                child: const StyledHeading("Select Character"),
               )
             ],
           ),
