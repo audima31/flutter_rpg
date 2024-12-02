@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rpg/models/characters.dart';
 import 'package:flutter_rpg/models/vacation.dart';
 import 'package:flutter_rpg/screens/create/vocation_card.dart';
+import 'package:flutter_rpg/screens/home/home.dart';
 import 'package:flutter_rpg/shared/styled_button.dart';
 import 'package:flutter_rpg/shared/styled_text.dart';
 import 'package:flutter_rpg/theme.dart';
+import 'package:uuid/uuid.dart';
+
+//membuat id secara otomatis
+var uuid = const Uuid();
 
 class Create extends StatefulWidget {
   const Create({super.key});
@@ -39,17 +45,64 @@ class _CreateState extends State<Create> {
   void handleSubmit() {
     //trim() untuk menghapus semua spasi di awal dan akhir
     if (_nameController.text.trim().isEmpty) {
-      print('name must not be empty');
+      //show errorpop up  dialog
+
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              backgroundColor: AppColors.secondaryAccent,
+              // title: const StyledHeading("Missing Character Name"),
+              title: const StyledHeading("Missing Character Name"),
+              content: const StyledText(
+                  "Every good RPG character needs a great name..."),
+              actions: [
+                StyledButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const StyledHeading("Close"))
+              ],
+              actionsAlignment: MainAxisAlignment.center,
+            );
+          });
       return;
     }
 
     if (_sloganController.text.trim().isEmpty) {
-      print('slogan must not be empty');
+      //show error pop up dialog
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              backgroundColor: AppColors.secondaryAccent,
+              // title: const StyledHeading("Missing Character Name"),
+              title: const StyledHeading(
+                "Missing Slogan",
+              ),
+              content: const StyledText("Remember to add a catchy slogan..."),
+              actions: [
+                StyledButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const StyledHeading("Close"))
+              ],
+              actionsAlignment: MainAxisAlignment.center,
+            );
+          });
       return;
     }
-    print(_nameController.text);
-    print(_sloganController.text);
+    characters.add(Character(
+        name: _nameController.text.trim(),
+        slogan: _sloganController.text.trim(),
+        id: uuid.v4(),
+        vocation: selectedVocation));
+
+    Navigator.push(
+        context, MaterialPageRoute(builder: (contex) => const Home()));
   }
+
   //END INPUT FORM HANDLER -----------------------------------------------------------
 
   @override

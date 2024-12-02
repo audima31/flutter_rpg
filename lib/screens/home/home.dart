@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rpg/screens/create/create.dart';
 import 'package:flutter_rpg/screens/home/character_card.dart';
 import 'package:flutter_rpg/shared/styled_button.dart';
 import 'package:flutter_rpg/models/characters.dart';
@@ -31,7 +32,13 @@ class _HomeState extends State<Home> {
                 ),
               ),
               StyledButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Create(),
+                      ));
+                },
                 child: const StyledHeading("Select Character"),
               )
             ],
