@@ -32,6 +32,19 @@ class Character with Stats {
     skills.clear();
     skills.add(skill);
   }
+
+  //Character to Firestore (map)
+  Map<String, dynamic> toFirestore() {
+    return {
+      'name': name,
+      'slogan': slogan,
+      'isFav': _isFav,
+      'vocation': vocation.toString(),
+      'skills': skills.map((skill) => skill.id).toList(),
+      'stats': statsAsMap,
+      'points': points,
+    };
+  }
 }
 
 //dummy character data

@@ -13,6 +13,12 @@ class Skill {
     required this.image,
     required this.vocation,
   });
+
+//Biar mempermudah dalam debugging, kalau gamake ini gabakal munculin data yang diambil
+  @override
+  String toString() {
+    return 'Skill(id: $id, name: $name, image: $image, vocation: $vocation)';
+  }
 }
 
 final List<Skill> allSkills = [

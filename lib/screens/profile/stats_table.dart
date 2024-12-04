@@ -47,61 +47,64 @@ class _StatsTableState extends State<StatsTable> {
           //stats table (Basic Table in Flutter)
           Table(
             children: widget.character.statsAsFormattedList.map((index) {
-              return TableRow(children: [
-                //stats title
-                TableCell(
-                    verticalAlignment: TableCellVerticalAlignment.middle,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: StyledHeading(index['title']!),
-                    )),
+              return TableRow(
+                  decoration: BoxDecoration(
+                      color: AppColors.secondaryColor.withOpacity(0.5)),
+                  children: [
+                    //stats title
+                    TableCell(
+                        verticalAlignment: TableCellVerticalAlignment.middle,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: StyledHeading(index['title']!),
+                        )),
 
-                //stats value
-                TableCell(
-                  verticalAlignment: TableCellVerticalAlignment.middle,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: StyledHeading(index['value']!),
-                  ),
-                ),
-
-                //Icon Increase
-                TableCell(
-                    verticalAlignment: TableCellVerticalAlignment.middle,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            widget.character.increaseStat(index['title']!);
-                          });
-                        },
-                        icon: Icon(
-                          Icons.arrow_upward,
-                          color: AppColors.textColor,
-                        ),
-                      ),
-                    )),
-
-                //Table Decrease
-                TableCell(
-                  verticalAlignment: TableCellVerticalAlignment.middle,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          widget.character.decreaseStat(index['title']!);
-                        });
-                      },
-                      icon: Icon(
-                        Icons.arrow_downward,
-                        color: AppColors.textColor,
+                    //stats value
+                    TableCell(
+                      verticalAlignment: TableCellVerticalAlignment.middle,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: StyledHeading(index['value']!),
                       ),
                     ),
-                  ),
-                )
-              ]);
+
+                    //Icon Increase
+                    TableCell(
+                        verticalAlignment: TableCellVerticalAlignment.middle,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                widget.character.increaseStat(index['title']!);
+                              });
+                            },
+                            icon: Icon(
+                              Icons.arrow_upward,
+                              color: AppColors.textColor,
+                            ),
+                          ),
+                        )),
+
+                    //Table Decrease
+                    TableCell(
+                      verticalAlignment: TableCellVerticalAlignment.middle,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              widget.character.decreaseStat(index['title']!);
+                            });
+                          },
+                          icon: Icon(
+                            Icons.arrow_downward,
+                            color: AppColors.textColor,
+                          ),
+                        ),
+                      ),
+                    )
+                  ]);
             }).toList(),
           ),
         ],

@@ -3,22 +3,24 @@ import 'package:flutter_rpg/models/characters.dart';
 import 'package:flutter_rpg/models/vacation.dart';
 import 'package:flutter_rpg/screens/create/vocation_card.dart';
 import 'package:flutter_rpg/screens/home/home.dart';
+import 'package:flutter_rpg/services/character_store.dart';
 import 'package:flutter_rpg/shared/styled_button.dart';
 import 'package:flutter_rpg/shared/styled_text.dart';
 import 'package:flutter_rpg/theme.dart';
+import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
 //membuat id secara otomatis
 var uuid = const Uuid();
 
-class Create extends StatefulWidget {
-  const Create({super.key});
+class CreateScreen extends StatefulWidget {
+  const CreateScreen({super.key});
 
   @override
-  State<Create> createState() => _CreateState();
+  State<CreateScreen> createState() => _CreateScreenState();
 }
 
-class _CreateState extends State<Create> {
+class _CreateScreenState extends State<CreateScreen> {
   //INPUT FORM HANDLER -----------------------------------------------------------
   //Controller untuk mengambil data input
   final _nameController = TextEditingController();
@@ -93,11 +95,14 @@ class _CreateState extends State<Create> {
           });
       return;
     }
-    characters.add(Character(
-        name: _nameController.text.trim(),
-        slogan: _sloganController.text.trim(),
-        id: uuid.v4(),
-        vocation: selectedVocation));
+
+    //Add character to character store --------------------------------------------------------
+    Provider.of<CharacterStore>(context, listen: false).addCharacter(Character(
+      name: _nameController.text.trim(),
+      slogan: _sloganController.text.trim(),
+      vocation: selectedVocation,
+      id: uuid.v4(),
+    ));
 
     Navigator.push(
         context, MaterialPageRoute(builder: (contex) => const Home()));
