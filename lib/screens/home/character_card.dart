@@ -16,9 +16,12 @@ class CharacterCard extends StatelessWidget {
       child: Row(
         children: [
           //dari character.dart, disana ada vocation, abis itu ambil vocation.image
-          Image.asset(
-            'assets/img/vocations/${character.vocation.image}',
-            width: 80,
+          Hero(
+            tag: character.id.toString(),
+            child: Image.asset(
+              'assets/img/vocations/${character.vocation.image}',
+              width: 80,
+            ),
           ),
           const SizedBox(width: 20),
           Column(

@@ -39,7 +39,14 @@ class _HomeState extends State<Home> {
                     //characters dari data dummy yang ada di characters.dart
                     itemCount: value.characters.length,
                     itemBuilder: (_, index) {
-                      return CharacterCard(value.characters[index]);
+                      return Dismissible(
+                          //Disimissible biar bisa animasi menghapus
+                          key: ValueKey(value.characters[index].id),
+                          onDismissed: (direction) {
+                            Provider.of<CharacterStore>(context, listen: false)
+                                .removeCharacter(value.characters[index]);
+                          },
+                          child: CharacterCard(value.characters[index]));
                     },
                   );
                 }),
