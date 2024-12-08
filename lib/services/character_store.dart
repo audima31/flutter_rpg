@@ -1,48 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rpg/models/characters.dart';
 import 'package:flutter_rpg/models/vacation.dart';
+import 'package:flutter_rpg/services/firestore_service.dart';
 
 //Center Data Store
 class CharacterStore extends ChangeNotifier {
-  //Define global state
-  final List<Character> _characters = [
-    Character(
-      id: '1',
-      name: 'John Doe',
-      vocation: Vocation.ninja,
-      slogan: 'Ninja!',
-    ),
-    Character(
-      id: '2',
-      name: 'Jonny',
-      vocation: Vocation.wizard,
-      slogan: 'Kapumf!',
-    ),
-    Character(
-      id: '3',
-      name: 'Klara',
-      vocation: Vocation.junkie,
-      slogan: 'Light me up!',
-    ),
-    Character(
-      id: '4',
-      name: 'Crimson',
-      vocation: Vocation.raider,
-      slogan: 'Fire in the hole!',
-    ),
-  ];
+  //Global State
+  final List<Character> _characters = [];
 
   get characters => _characters;
 
-  // add character
+//CRUD dibawah berhubungan dengan function dari firestore_service.dart agar terhubung dengan firestore
+
+  //fetch character
+  void fetchCharactersOnce() async {
+    if (characters.length == 0) {
+      final snapshot = await FirestoreService.getCharactersOnce();
+
+      for (var doc in snapshot.docs) {
+        _characters.add(doc.data());
+      }
+
+      notifyListeners();
+    }
+  }
+
+  // add character (create function) -
   void addCharacter(Character character) {
+    FirestoreService.addCharacter(character);
+
     _characters.add(character);
     notifyListeners();
   }
 
-// save (update) character
+  // save (update) character
+  Future<void> saveCharacter(Character character) async {
+    await FirestoreService.updateCharacter(character);
+    return;
+  }
 
-// remove character
+  // remove character
+  void removeCharacter(Character character) async {
+    await FirestoreService.deleteCharacter(character);
 
-// initially fetch character
+    _characters.remove(character);
+    notifyListeners();
+  }
 }

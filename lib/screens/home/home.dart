@@ -16,6 +16,14 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   @override
+  //initState akan dijalankan pertama kali sebelum menampilkan halaman
+  void initState() {
+    //Menampilkan data dari Firebase, yang diambil dari global state di character_store.dart
+    Provider.of<CharacterStore>(context, listen: false).fetchCharactersOnce();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: const Text("Your Characters"), centerTitle: true),
